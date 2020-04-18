@@ -15,9 +15,21 @@ edition = "2018"
 default = ["std"]
 i128 = []
 std = []
+with-testing = ["testing"]
 
 [badges]
 travis-ci = { repository = "dtolnay/itoa" }
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies.testing]
+branch = "rsgx1.1.1"
+git = "https://github.com/sammyne/testing-rsgx"
+optional = true
+
+[dependencies.sgx_tstd]
+features = ["thread"]
+git = "https://github.com/apache/teaclave-sgx-sdk"
+rev = "v1.1.1"
+

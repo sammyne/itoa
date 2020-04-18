@@ -49,7 +49,8 @@
 //! ```
 
 #![doc(html_root_url = "https://docs.rs/itoa/0.4.5")]
-#![cfg_attr(not(feature = "std"), no_std)]
+#![no_std]
+//#![cfg_attr(not(feature = "std"), no_std)]
 #![cfg_attr(feature = "cargo-clippy", allow(renamed_and_removed_lints))]
 #![cfg_attr(
     feature = "cargo-clippy",
@@ -58,6 +59,12 @@
 
 #[cfg(feature = "i128")]
 mod udiv128;
+
+#[cfg(feature = "std")]
+#[macro_use]
+extern crate sgx_tstd as std;
+#[cfg(feature = "std")]
+use std::prelude::v1::*;
 
 #[cfg(feature = "std")]
 use std::{fmt, io, mem, ptr, slice, str};
@@ -119,7 +126,8 @@ impl Buffer {
     #[allow(deprecated)]
     pub fn new() -> Buffer {
         Buffer {
-            bytes: unsafe { mem::uninitialized() },
+            //bytes: unsafe { mem::uninitialized() },
+            bytes: unsafe { mem::MaybeUninit::zeroed().assume_init() },
         }
     }
 
@@ -343,3 +351,6 @@ const I128_MAX_LEN: usize = 40;
 
 #[cfg(all(feature = "i128"))]
 impl_Integer128!(I128_MAX_LEN => i128, U128_MAX_LEN => u128);
+
+#[cfg(feature = "with-testing")]
+pub mod tests;

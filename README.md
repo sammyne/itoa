@@ -4,6 +4,7 @@ itoa
 [![Build Status](https://img.shields.io/github/workflow/status/dtolnay/itoa/CI/master)](https://github.com/dtolnay/itoa/actions?query=branch%3Amaster)
 [![Latest Version](https://img.shields.io/crates/v/itoa.svg)](https://crates.io/crates/itoa)
 [![Rust Documentation](https://img.shields.io/badge/api-rustdoc-blue.svg)](https://docs.rs/itoa)
+![rsgx](https://github.com/sammyne/itoa/workflows/rsgx/badge.svg?branch=rsgx1.1.2)
 
 This crate provides fast functions for printing integer primitives to an
 [`io::Write`] or a [`fmt::Write`]. The implementation comes straight from
